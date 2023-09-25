@@ -1,6 +1,7 @@
 import {ZBClient} from 'zeebe-node'
 import {getInput, setFailed} from "@actions/core";
 import fs from 'fs';
+import * as path from "path";
 
 const ZEEBE_CLIENT_ID = getInput('client_id')
 const ZEEBE_CLIENT_SECRET = getInput('client_secret')
@@ -36,10 +37,19 @@ const deployBpmnModel = async () => {
         const filenames = await getFilenamesInFolder(SOURCE);
 
 
+
+
         for (const file of filenames) {
             console.log("File: " + file)
-            const res = await zbc.deployProcess(SOURCE + '/' + file)
-            console.log(res)
+
+            if (file !== '.bpmnlintrc') {
+                console.log("Files. " + file);
+                const res = await zbc.deployProcess(SOURCE + '/' + file)
+                console.log(res);
+            }
+
+            // const res = await zbc.deployProcess(SOURCE + '/' + file)
+            // console.log(res)
 
         }
 
