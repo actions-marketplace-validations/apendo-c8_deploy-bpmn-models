@@ -19,9 +19,9 @@ const zbc = new ZBClient({
 
 const getFilenamesInFolder = async (folderPath: string): Promise<string[]> => {
     try {
-        const files = await fs.promises.readdir(folderPath);
 
-        const bpmnFiles = files.filter((file) => file.endsWith('.bpmn'));
+        const files = await fs.promises.readdir(folderPath);
+        const bpmnFiles = files.filter((file) => /\.bpmn$/.test(file));
 
         return bpmnFiles;
     } catch (error) {
@@ -34,6 +34,7 @@ const deployBpmnModel = async () => {
     try {
 
         const filenames = await getFilenamesInFolder(SOURCE);
+
 
         for (const file of filenames) {
             console.log("File: " + file)
