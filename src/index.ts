@@ -19,8 +19,11 @@ const zbc = new ZBClient({
 
 const getFilenamesInFolder = async (folderPath: string): Promise<string[]> => {
     try {
+        const files = await fs.promises.readdir(folderPath);
 
-        return await fs.promises.readdir(folderPath);
+        const bpmnFiles = files.filter((file) => file.endsWith('.bpmn'));
+
+        return bpmnFiles;
     } catch (error) {
         console.error('Error reading folder:', error);
         return [];
