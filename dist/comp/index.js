@@ -28,7 +28,7 @@ const zbc = new zeebe_node_1.ZBClient({
 const getFilenamesInFolder = async (folderPath) => {
     try {
         const files = await fs_1.default.promises.readdir(folderPath);
-        const bpmnFiles = files.filter((file) => /\.bpmn$/.test(file));
+        const bpmnFiles = files.filter((file) => file.endsWith('.bpmn') && file !== '.bpmnlintrc');
         return bpmnFiles;
     }
     catch (error) {

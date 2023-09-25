@@ -21,7 +21,7 @@ const getFilenamesInFolder = async (folderPath: string): Promise<string[]> => {
     try {
 
         const files = await fs.promises.readdir(folderPath);
-        const bpmnFiles = files.filter((file) => /\.bpmn$/.test(file));
+        const bpmnFiles = files.filter((file) => file.endsWith('.bpmn') && file !== '.bpmnlintrc');
 
         return bpmnFiles;
     } catch (error) {
