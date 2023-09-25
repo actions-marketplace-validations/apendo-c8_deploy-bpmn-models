@@ -1,0 +1,7 @@
+Investigate
+  protoPath: path.join(__dirname, '/zeebe.proto'),
+
+  node29 vs ES2019 orn ES2020
+
+  Probably wrong.
+  /home/runner/work/deploy-bpmn-models/deploy-bpmn-models/BPMN/Model-With-Milestone-2.bpmn
