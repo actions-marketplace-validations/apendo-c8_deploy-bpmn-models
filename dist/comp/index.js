@@ -27,7 +27,9 @@ const zbc = new zeebe_node_1.ZBClient({
 });
 const getFilenamesInFolder = async (folderPath) => {
     try {
-        return await fs_1.default.promises.readdir(folderPath);
+        const files = await fs_1.default.promises.readdir(folderPath);
+        const bpmnFiles = files.filter((file) => file.endsWith('.bpmn'));
+        return bpmnFiles;
     }
     catch (error) {
         console.error('Error reading folder:', error);
